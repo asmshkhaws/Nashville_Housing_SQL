@@ -1,3 +1,4 @@
+# Fetch the values of all the columns available in a table
 ```
 SELECT *
 FROM [PortfolioProject].[dbo].[Nashville]
@@ -70,31 +71,37 @@ Set PropertyAddress = ISNULL(a.PropertyAddress, b.PropertyAddress)
 --------------------------------------------------------------------------------------------------------------------------
 # Breaking out PropertyAddress into Individual Columns (Address, City)
 
-* The SUBSTRING() function extracts some characters from a string. {SUBSTRING(string, start, length)}
-* The CHARINDEX() function searches for a substring in a string, and returns the position. {CHARINDEX(substring, string, start)}
-* The LEN() function returns the length of a string. {LEN(string)}
+* The SUBSTRING() function extracts some characters from a string. Syntax: SUBSTRING(string, start, length)
+* The CHARINDEX() function searches for a substring in a string, and returns the position. Syntax: CHARINDEX(substring, string, start)
+* The LEN() function returns the length of a string. Syntax: LEN(string)
+* Displays PropertyAddress column
 ```
 Select PropertyAddress
 From [PortfolioProject].[dbo].[Nashville]
 ```
+* Extract PropertyAddress using SUBSTRING(string, start, length), CHARINDEX(substring, string, start), LEN(string)
 ```
 Select
 SUBSTRING(PropertyAddress, 1, charindex(',',PropertyAddress)-1) as Address,
 Substring(PropertyAddress, charindex(',',PropertyAddress)+1, LEN(PropertyAddress)) as Address
 From [PortfolioProject].[dbo].[Nashville]
 ```
+* Add PropertySplitAddress column
 ```
 Alter Table [PortfolioProject].[dbo].[Nashville]
 Add PropertySplitAddress nvarchar(255);
 ```
+* Update PropertySplitAddress column
 ```
 Update [PortfolioProject].[dbo].[Nashville]
 Set PropertySplitAddress = SUBSTRING(PropertyAddress, 1, charindex(',',PropertyAddress)-1)
 ```
+* Add PropertySplitCity column
 ```
 Alter Table [PortfolioProject].[dbo].[Nashville]
 Add PropertySplitCity nvarchar(255);
 ```
+* Update PropertySplitCity column
 ```
 Update [PortfolioProject].[dbo].[Nashville]
 Set PropertySplitCity = Substring(PropertyAddress, charindex(',',PropertyAddress)+1, LEN(PropertyAddress))
@@ -107,6 +114,7 @@ From [PortfolioProject].[dbo].[Nashville]
 # Breaking out OwnerAddress into Individual Columns (Address, City, State)
 * PARSENAME() useful when you’re dealing with objects that have multiple parts separated by a delimiter, such as a dot (“.”), and you need to retrieve a specific part.
 * PARSENAME ('object_name' , object_piece )
+* Extract OwnerAddress column using PARSENAME, and replace "," with "." as PARSENAME works only with "." delimeter
 ```
 Select
 Parsename(Replace(OwnerAddress, ',', '.'), 3),
@@ -114,26 +122,32 @@ Parsename(Replace(OwnerAddress, ',', '.'), 2),
 Parsename(Replace(OwnerAddress, ',', '.'), 1)
 From [PortfolioProject].[dbo].[Nashville]
 ```
+* Add OwnerSplitAddress column
 ```
 Alter Table [PortfolioProject].[dbo].[Nashville]
 Add OwnerSplitAddress nvarchar(255);
 ```
+* Update OwnerSplitAddress column
 ```
 Update [PortfolioProject].[dbo].[Nashville]
 Set OwnerSplitAddress = Parsename(Replace(OwnerAddress, ',', '.'), 3)
 ```
+* Add OwnerSplitCity column
 ```
 Alter Table [PortfolioProject].[dbo].[Nashville]
 Add OwnerSplitCity nvarchar(255);
 ```
+* Update OwnerSplitCity column
 ```
 Update [PortfolioProject].[dbo].[Nashville]
 Set OwnerSplitCity = Parsename(Replace(OwnerAddress, ',', '.'), 2)
 ```
+* Add OwnerSplitState column
 ```
 Alter Table [PortfolioProject].[dbo].[Nashville]
 Add OwnerSplitState nvarchar(255);
 ```
+* Update OwnerSplitState column
 ```
 Update [PortfolioProject].[dbo].[Nashville]
 Set OwnerSplitState = Parsename(Replace(OwnerAddress, ',', '.'), 1)
@@ -145,13 +159,15 @@ From [PortfolioProject].[dbo].[Nashville]
 --------------------------------------------------------------------------------------------------------------------------
 # Change Y and N to Yes and No in "Sold as Vacant" field
 
-* The CASE expression goes through conditions and returns a value when the first condition is met (like an if-then-else statement). 
+* The CASE expression goes through conditions and returns a value when the first condition is met (like an if-then-else statement).
+* Using Distinct query fetch number of 'Y', 'N' values in SoldAsVacant column
 ```
 Select Distinct(SoldAsVacant), Count(SoldAsVacant)
 From [PortfolioProject].[dbo].[Nashville]
 Group by SoldAsVacant
 Order by 2
 ```
+* Using CASE statement replace Y,N with Yes , No.
 ```
 Select SoldAsVacant,
 	Case
@@ -161,6 +177,7 @@ Select SoldAsVacant,
 	End
 From [PortfolioProject].[dbo].[Nashville] 
 ```
+* Update SoldAsVacant column
 ```
 Update [PortfolioProject].[dbo].[Nashville]
 Set SoldAsVacant =
@@ -183,6 +200,7 @@ ROW_NUMBER() OVER (
 ORDER BY sort_expression [ASC | DESC], ...
 )
 ```
+* Use CTE to remove multiple duplicate records(rows) in Table
 ```
 With RowNumCTE as (
 Select *,
@@ -232,6 +250,14 @@ SELECT *
 FROM [PortfolioProject].[dbo].[Nashville]
 ```
 ---------------------------------------------------------------------------------------------------------
+
+# Check Column name of table
+```
+SELECT table_name
+FROM information_schema.tables
+WHERE table_type='BASE TABLE'
+```
+---------------------------------------------------------------------------------------------------------
 # Check Data Type of Column
 ```
 SELECT 
@@ -244,12 +270,7 @@ FROM INFORMATION_SCHEMA.COLUMNS
 where TABLE_NAME = 'Nashville' 
 --and COLUMN_NAME = 'ParcelID'
 ```
-# Check Column name of table
-```
-SELECT table_name
-FROM information_schema.tables
-WHERE table_type='BASE TABLE'
-```
+---------------------------------------------------------------------------------------------------------
 # Move Column
 ```
 --Alter Table NashvilleHousing Change column [SaleDateConverted] After ParcelID;
