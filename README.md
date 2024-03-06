@@ -29,7 +29,7 @@ This is a guided project from AlextheAnalyst: https://github.com/AlexTheAnalyst/
 
 # Dataset
 
-This dataset has 54403 records. It primarily describes the Nashville property's detail containing the Owner and its property details.
+This dataset has 56447 records. It primarily describes the Nashville property's detail containing the Owner and its property details.
 
 Description of the variables:
 
