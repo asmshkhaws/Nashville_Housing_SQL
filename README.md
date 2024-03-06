@@ -22,9 +22,9 @@ I have cleaned this data using SQL queries. Here the data was retrieved, underst
 This is a guided project from AlextheAnalyst: https://github.com/AlexTheAnalyst/PortfolioProjects/blob/main/Nashville%20Housing%20Data%20for%20Data%20Cleaning.xlsx
 
 # Files
-- Dataset: [Nashville Housing Data](Dataset/Nashville_Housing_Data.xlsx)
-- Code: [Nashville_Data_Cleaning]
-
+- Dataset: [Nashville Housing Data.xlsx](Dataset/Nashville_Housing_Data.xlsx)
+- Steps: [Complete_Queries](SQL_QUERIES.md)
+- File: [Nashville.sql](Nashville.sql)
 
 # Dataset
 
