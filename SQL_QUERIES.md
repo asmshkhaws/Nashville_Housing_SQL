@@ -21,7 +21,7 @@ SELECT SaleDate, CONVERT(Date, SaleDate)
 Alter Table Nashville
 Add SaleDateConverted Date;
 ```
-Update SaleDateConverted column
+* Update "SaleDateConverted" column
 ```
 Update Nashville
 Set SaleDateConverted = CONVERT(Date, SaleDate)
@@ -30,7 +30,6 @@ Set SaleDateConverted = CONVERT(Date, SaleDate)
 SELECT SaleDateConverted
   FROM [PortfolioProject].[dbo].[Nashville]
 ```
-
  --------------------------------------------------------------------------------------------------------------------------
 # Populate Property Address data
 * ParcelID and Address is dependant, so where address is null we can use ParcelID to fill null address
