@@ -13,7 +13,6 @@ I have cleaned this data using SQL queries. Here the data was retrieved, underst
 # What was done?
 - Converting String Date to Date datatype.
 - Updating missing values in Address Column.
-- Formating ParcelID, Acreage, LandValue
 - Breaking out PropertyAddress, Owner Address into individual columns
 - Change Y and N to Yes and No in 'SoldasVacant' field.
 - Removing Duplicates and redudndant columns
