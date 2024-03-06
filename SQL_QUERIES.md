@@ -111,8 +111,7 @@ From [PortfolioProject].[dbo].[Nashville]
 ```
 --------------------------------------------------------------------------------------------------------------------------
 # Breaking out OwnerAddress into Individual Columns (Address, City, State)
-* PARSENAME() useful when you’re dealing with objects that have multiple parts separated by a delimiter, such as a dot (“.”), and you need to retrieve a specific part.
-* PARSENAME ('object_name' , object_piece )
+* PARSENAME() useful when you’re dealing with objects that have multiple parts separated by a delimiter, such as a dot (“.”), and you need to retrieve a specific part. Syntax: PARSENAME ('object_name' , object_piece )
 * Extract "OwnerAddress" column using PARSENAME, and replace "," with "." as PARSENAME works only with "." delimeter
 ```
 Select
