@@ -15,11 +15,7 @@ I have cleaned this data using SQL queries. Here the data was retrieved, underst
 - Updating missing values in Address Column.
 - Breaking out PropertyAddress, Owner Address into individual columns
 - Change Y and N to Yes and No in 'SoldasVacant' field.
-- Removing Duplicates and redudndant columns
-
-# Credits
-
-This is a guided project from AlextheAnalyst: https://github.com/AlexTheAnalyst/PortfolioProjects/blob/main/Nashville%20Housing%20Data%20for%20Data%20Cleaning.xlsx
+- Removing Duplicates and redudndant columns.
 
 # Files
 - Dataset: [Nashville Housing Data.xlsx](Dataset/Nashville_Housing_Data.xlsx)
