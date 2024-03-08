@@ -309,7 +309,7 @@ Set SoldAsVacant =
 * Check Duplicates
 * `CTE` act as virtual tables that are created during query execution, used by the query, and deleted after the query executes.
 * `ROW_NUMBER` function is a SQL ranking function that assigns a sequential rank number to each new record in a partition.
-* ROW_NUMBER Syntax:
+* `ROW_NUMBER` Syntax:
 ```
 ROW_NUMBER() OVER (
 [PARTITION BY partition_expression, ... ]
