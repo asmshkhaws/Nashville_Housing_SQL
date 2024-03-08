@@ -1,3 +1,7 @@
+# Table Info
+- `Database`: PortfolioProject
+- `Table`: Nashville
+
 # Fetch the values of all the columns available in a table
 ```
 SELECT *
