@@ -19,9 +19,9 @@ FROM [PortfolioProject].[dbo].[Nashville]
 
 # Standardize Date Format
 
-* The ALTER TABLE statement is used to add, delete, or modify columns in an existing table.
+* `ALTER TABLE` statement is used to add, delete, or modify columns in an existing table.
 
-* The UPDATE statement is used to modify the existing records in a table.
+* `UPDATE` statement is used to modify the existing records in a table.
 
 * Convert String Date to Date datatype
 ```
@@ -64,7 +64,7 @@ SELECT SaleDateConverted
 # Populate Property Address data
 * ParcelID and Address is dependant, so where address is null we can use ParcelID to fill null address
 
-* The ISNULL() function returns a specified value if the expression is NULL. Syntax: ISNULL(expression, value)
+* `ISNULL()` function returns a specified value if the expression is NULL. Syntax: `ISNULL(expression, value)`
 * List Null value in "PropertyAddress" column
 
 ```
@@ -124,9 +124,9 @@ Set PropertyAddress = ISNULL(a.PropertyAddress, b.PropertyAddress)
 --------------------------------------------------------------------------------------------------------------------------
 # Breaking out PropertyAddress into Individual Columns (Address, City)
 
-* The SUBSTRING() function extracts some characters from a string. Syntax: SUBSTRING(string, start, length)
-* The CHARINDEX() function searches for a substring in a string, and returns the position. Syntax: CHARINDEX(substring, string, start)
-* The LEN() function returns the length of a string. Syntax: LEN(string)
+* `SUBSTRING()` function extracts some characters from a string. Syntax: `SUBSTRING(string, start, length)`
+* `CHARINDEX()` function searches for a substring in a string, and returns the position. Syntax: `CHARINDEX(substring, string, start)`
+* `LEN()` function returns the length of a string. Syntax: `LEN(string)`
 * Displays "PropertyAddress" column
 ```
 Select PropertyAddress
@@ -196,7 +196,7 @@ From [PortfolioProject].[dbo].[Nashville]
 
 --------------------------------------------------------------------------------------------------------------------------
 # Breaking out OwnerAddress into Individual Columns (Address, City, State)
-* PARSENAME() useful when you’re dealing with objects that have multiple parts separated by a delimiter, such as a dot (“.”), and you need to retrieve a specific part. Syntax: PARSENAME ('object_name' , object_piece )
+* `PARSENAME()` useful when you’re dealing with objects that have multiple parts separated by a delimiter, such as a dot (“.”), and you need to retrieve a specific part. Syntax: `PARSENAME ('object_name' , object_piece )`
 * Extract "OwnerAddress" column using PARSENAME, and replace "," with "." as PARSENAME works only with "." delimeter
 ```
 Select
@@ -262,7 +262,7 @@ From [PortfolioProject].[dbo].[Nashville]
 --------------------------------------------------------------------------------------------------------------------------
 # Change Y and N to Yes and No in "Sold as Vacant" field
 
-* The CASE expression goes through conditions and returns a value when the first condition is met (like an if-then-else statement).
+* `CASE` expression goes through conditions and returns a value when the first condition is met (like an if-then-else statement).
 * Using Distinct query fetch number of 'Y', 'N' values in "SoldAsVacant" column
 ```
 Select Distinct(SoldAsVacant), Count(SoldAsVacant)
@@ -307,8 +307,8 @@ Set SoldAsVacant =
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 # Remove Duplicates (Usually we dont delete duplicate rows in SQL)
 * Check Duplicates
-* CTEs act as virtual tables that are created during query execution, used by the query, and deleted after the query executes.
-* ROW_NUMBER function is a SQL ranking function that assigns a sequential rank number to each new record in a partition.
+* `CTE` act as virtual tables that are created during query execution, used by the query, and deleted after the query executes.
+* `ROW_NUMBER` function is a SQL ranking function that assigns a sequential rank number to each new record in a partition.
 * ROW_NUMBER Syntax:
 ```
 ROW_NUMBER() OVER (
