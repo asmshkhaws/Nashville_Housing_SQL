@@ -1,6 +1,26 @@
 # Table Info
-- `Database`: PortfolioProject
-- `Table`: Nashville
+`Database` : PortfolioProject
+
+`Table` : Nashville
+
+`Rows` : 56477
+
+`Columns` : 19
+
+# Steps
+__(1)__ Standardize Date Format.
+
+__(2)__ Updating missing values in `PropertyAddress` field.
+
+__(3)__ Split `PropertyAddress` into individual columns.
+
+__(4)__ Split `OwnerAddress` into individual columns.
+
+__(5)__ Change Y and N to Yes and No in `SoldasVacant` field.
+
+__(6)__ Removing Duplicate rows/records in table.
+
+__(7)__ Remove redudndant columns.
 
 # Fetch the values of all the columns available in a table
 ```
@@ -17,7 +37,7 @@ FROM [PortfolioProject].[dbo].[Nashville]
 | 50693     | 052 09 0 049.00 | SINGLE FAMILY | 1125 CINDERELLA  ST, MADISON | 2016-06-01 00:00:00.000 | 180000    | 20160606-0056539 | No           | HOLLOWAY, TAMARA & MONTGOMERY, LOREN | 1125  CINDERELLA ST, MADISON, TN | 0.27    | GENERAL SERVICES DISTRICT | 16000     | 119800        | 142600     | 1946      | 3        | 2        | 0         |
 --------------------------------------------------------------------------------------------------------------------------
 
-# Standardize Date Format
+# 1. Standardize Date Format
 
 * `ALTER TABLE` statement is used to add, delete, or modify columns in an existing table.
 
@@ -61,7 +81,7 @@ SELECT SaleDateConverted
 | 2016-10-04         |
 
  --------------------------------------------------------------------------------------------------------------------------
-# Populate Property Address data
+# 2. Populate Property Address data
 * ParcelID and Address is dependant, so where address is null we can use ParcelID to fill null address
 
 * `ISNULL()` function returns a specified value if the expression is NULL. Syntax: `ISNULL(expression, value)`
@@ -122,7 +142,7 @@ Set PropertyAddress = ISNULL(a.PropertyAddress, b.PropertyAddress)
 ![image](https://github.com/asmshkhaws/Nashville_Housing_SQL/assets/119579424/4731a003-e12d-4a92-8cb0-7b3afa429ec6)
 
 --------------------------------------------------------------------------------------------------------------------------
-# Breaking out PropertyAddress into Individual Columns (Address, City)
+# 3. Breaking out PropertyAddress into Individual Columns (Address, City)
 
 * `SUBSTRING()` function extracts some characters from a string. Syntax: `SUBSTRING(string, start, length)`
 * `CHARINDEX()` function searches for a substring in a string, and returns the position. Syntax: `CHARINDEX(substring, string, start)`
@@ -195,7 +215,7 @@ From [PortfolioProject].[dbo].[Nashville]
 | 331 DUE WEST  AVE, MADISON   | 2016-10-04 00:00:00.000 | 70000     | 20161018-0109986 | No           | TITUS-TUTTLE, COREY W. | 331  DUE WEST AVE, MADISON, TN   | 0.22    | GENERAL SERVICES DISTRICT | 16000     | 53500         | 69500      | 1950      | 2        | 1        | 0        | 2016-10-04        | 331 DUE WEST  AVE    |  MADISON           |
 
 --------------------------------------------------------------------------------------------------------------------------
-# Breaking out OwnerAddress into Individual Columns (Address, City, State)
+# 4. Breaking out OwnerAddress into Individual Columns (Address, City, State)
 * `PARSENAME()` useful when you’re dealing with objects that have multiple parts separated by a delimiter, such as a dot (“.”), and you need to retrieve a specific part. Syntax: `PARSENAME ('object_name' , object_piece )`
 * Extract "OwnerAddress" column using PARSENAME, and replace "," with "." as PARSENAME works only with "." delimeter
 ```
@@ -260,7 +280,7 @@ From [PortfolioProject].[dbo].[Nashville]
 | 1137  GOLDILOCKS ST |  MADISON       |  TN              |
 
 --------------------------------------------------------------------------------------------------------------------------
-# Change Y and N to Yes and No in "Sold as Vacant" field
+# 5. Change Y and N to Yes and No in "Sold as Vacant" field
 
 * `CASE` expression goes through conditions and returns a value when the first condition is met (like an if-then-else statement).
 * Using Distinct query fetch number of 'Y', 'N' values in "SoldAsVacant" column
@@ -305,7 +325,7 @@ Set SoldAsVacant =
 ![image](https://github.com/asmshkhaws/Nashville_Housing_SQL/assets/119579424/f3043530-4a36-4909-9b19-d13241826a6f)
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
-# Remove Duplicates (Usually we dont delete duplicate rows in SQL)
+# 6. Remove Duplicates (Usually we dont delete duplicate rows in SQL)
 * Check Duplicates
 * `CTE` act as virtual tables that are created during query execution, used by the query, and deleted after the query executes.
 * `ROW_NUMBER` function is a SQL ranking function that assigns a sequential rank number to each new record in a partition.
@@ -366,7 +386,7 @@ Where row_num > 1
 ![image](https://github.com/asmshkhaws/Nashville_Housing_SQL/assets/119579424/728f570d-b7db-4b8f-8df4-69c0c0ab13a7)
 
 ---------------------------------------------------------------------------------------------------------
-# Delete Unused Columns
+# 7. Delete Unused Columns
 ```
 ALTER TABLE [PortfolioProject].[dbo].[Nashville]
 DROP COLUMN OwnerAddress, TaxDistrict, PropertyAddress, SaleDate
