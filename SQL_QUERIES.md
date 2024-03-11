@@ -83,8 +83,8 @@ SELECT SaleDateConverted
 
  --------------------------------------------------------------------------------------------------------------------------
 # 2. Populate Property Address data
-* ParcelID and Address is dependant, so where address is null we can use ParcelID to fill null address
-
+* ParcelID and Address is dependant, so where address is null we can use ParcelID to fill null address.
+* A self join is a regular join, but the table is joined with itself.
 * `ISNULL()` function returns a specified value if the expression is NULL. Syntax: `ISNULL(expression, value)`
 * List Null value in "PropertyAddress" column
 
