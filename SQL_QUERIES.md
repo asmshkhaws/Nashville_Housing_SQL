@@ -38,6 +38,7 @@ FROM [PortfolioProject].[dbo].[Nashville]
 --------------------------------------------------------------------------------------------------------------------------
 
 # 1. Standardize Date Format
+* The `CONVERT()` function converts a value (of any type) into a specified datatype.
 
 * `ALTER TABLE` statement is used to add, delete, or modify columns in an existing table.
 
