@@ -113,6 +113,7 @@ SELECT *
 | 45290     | 026 05 0 017.00  | SINGLE FAMILY           | NULL            | 2016-03-29 00:00:00.000 | 155000    | 20160330-0029941 | No           | TRIPP, MARVIN S. & DEBORAH YOUNG | 208  EAST AVE, GOODLETTSVILLE, TN      | 0.2     | CITY OF GOODLETTSVILLE | 21100     | 130200        | 151300     | 2008      | 3        | 2        | 0        |
 | 53147     | 026 06 0A 038.00 | RESIDENTIAL CONDO       | NULL            | 2016-08-25 00:00:00.000 | 144900    | 20160831-0091567 | No           | NULL                             | NULL                                   | NULL    | NULL                   | NULL      | NULL          | NULL       | NULL      | NULL     | NULL     | NULL     |
 
+![self join](https://github.com/asmshkhaws/Nashville_Housing_SQL/assets/119579424/57fb341e-731e-4a55-8f45-42498850a0bf)
 
 * Combine table on "ParcelID" column to fill null values of "PropertyAddress".
 ```
@@ -218,6 +219,7 @@ From [PortfolioProject].[dbo].[Nashville]
 --------------------------------------------------------------------------------------------------------------------------
 # 4. Breaking out OwnerAddress into Individual Columns (Address, City, State)
 * `PARSENAME()` useful when you’re dealing with objects that have multiple parts separated by a delimiter, such as a dot (“.”), and you need to retrieve a specific part. Syntax: `PARSENAME ('object_name' , object_piece )`
+* The `REPLACE()` function replaces all occurrences of a substring within a string, with a new substring.
 * Extract "OwnerAddress" column using PARSENAME, and replace "," with "." as PARSENAME works only with "." delimeter
 ```
 Select
